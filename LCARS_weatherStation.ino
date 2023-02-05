@@ -21,21 +21,16 @@ class Display{
     DHT dht;
     byte  pinSenorVcc;
     float temp, hum;
-    byte  width, high, startX, startY, endX,endY, textSize,size,radius;
+    byte  width, height, startX, startY, endX,endY, textSize,size,radius;
     
   public:
 
     Display();
-    //Anlegen eines Objektes der Klasse Adafruit 
-    //welche im Konstruktor(weiter unten also in der cpp) initialisiert wird um auf 
-    //Funktionen zuzugreifen
-    //Außerhalb geht auch
-    //Adafruit tft=Adafruit(); oder Adafruit tft();
     void globalBegin();
     void greetingsScreen(byte startX,byte startY,byte size);
-    void header(byte startX, byte startY, byte radius,byte width,byte high, uint16_t color);
-    void roundBlock(byte startX, byte startY, byte radius,byte width,byte high, uint16_t color);
-    void block(byte startX, byte startY,byte width, byte high,uint16_t color);
+    void header(byte startX, byte startY, byte radius,byte width,byte height, uint16_t color);
+    void roundBlock(byte startX, byte startY, byte radius,byte width,byte height, uint16_t color);
+    void block(byte startX, byte startY,byte width, byte height,uint16_t color);
     float temperature(byte startX,byte startY,byte textSize);
     float humidity(byte startX,byte startY,byte textSize);
 //    void icon();
@@ -55,19 +50,19 @@ void Display::globalBegin(){
   dht.begin();
 };
 
-void Display::header(byte startX, byte startY,byte width,byte high,  byte radius, uint16_t color){
+void Display::header(byte startX, byte startY,byte width,byte height,  byte radius, uint16_t color){
 
-tft.fillRoundRect(startX, startY,width,high, radius,color);
+tft.fillRoundRect(startX, startY,width,height, radius,color);
 
 };
-void Display::roundBlock(byte startX, byte startY,byte width,byte high,  byte radius, uint16_t color){
+void Display::roundBlock(byte startX, byte startY,byte width,byte height,  byte radius, uint16_t color){
 
-tft.fillRoundRect(startX, startY,width,high, radius,color);
+tft.fillRoundRect(startX, startY,width,height, radius,color);
 };
 
-void Display::block(byte startX, byte startY,byte width,byte high,uint16_t color){
+void Display::block(byte startX, byte startY,byte width,byte height,uint16_t color){
 
-  tft.fillRect(startX,startY,width,high,color);
+  tft.fillRect(startX,startY,width,height,color);
 };
 
 void Display::greetingsScreen(byte startX,byte startY,byte textSize){
